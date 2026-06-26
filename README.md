@@ -20,16 +20,6 @@ A responsive Countdown Timer web application built using HTML, CSS, and JavaScri
 
 https://madhuri-yelure.github.io/Countdown-Timer/
 
-## Project Structure
-
-```
-Countdown-Timer/
-│── index.html
-│── style.css
-│── script.js
-│── README.md
-```
-
 ## How to Run
 
 1. Clone or download the repository.
