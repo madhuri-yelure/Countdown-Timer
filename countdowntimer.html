@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown Timer</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#000;
+      overflow:hidden;
+      color:white;
+    }
+
+    /* Background dots */
+    body::before{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:100%;
+      background-image: radial-gradient(#ffffff55 1px, transparent 1px);
+      background-size: 30px 30px;
+      z-index:-1;
+    }
+
+    .container{
+      text-align:center;
+    }
+
+    h1{
+      margin-bottom:30px;
+      font-size:40px;
+    }
+
+    .timer-box{
+      background:#f6d64a;
+      padding:50px 70px;
+      border-radius:10px;
+      color:#222;
+      width:700px;
+      max-width:90%;
+    }
+
+    .subtitle{
+      font-size:18px;
+      margin-bottom:25px;
+      letter-spacing:1px;
+    }
+
+    .countdown{
+      display:flex;
+      justify-content:center;
+      gap:35px;
+      flex-wrap:wrap;
+    }
+
+    .time{
+      text-align:center;
+    }
+
+    .time h2{
+      font-size:55px;
+      font-weight:bold;
+    }
+
+    .time p{
+      font-size:14px;
+      margin-top:5px;
+      letter-spacing:1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Countdown Timer</h1>
+
+    <div class="timer-box">
+      <div class="subtitle">COUNTDOWN TO MY BIRTHDAY</div>
+
+      <div class="countdown">
+        <div class="time">
+          <h2 id="days">0</h2>
+          <p>DAYS</p>
+        </div>
+
+        <div class="time">
+          <h2 id="hours">0</h2>
+          <p>HOURS</p>
+        </div>
+
+        <div class="time">
+          <h2 id="minutes">0</h2>
+          <p>MINUTES</p>
+        </div>
+
+        <div class="time">
+          <h2 id="seconds">0</h2>
+          <p>SECONDS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set your target date here
+    const targetDate = new Date("2027-04-16T00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+
+      if(distance < 0){
+        document.querySelector(".countdown").innerHTML = "<h2>Time's Up 🎉</h2>";
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
